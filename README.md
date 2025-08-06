@@ -2,14 +2,6 @@
 
 AlphaEdit is a sophisticated model editing framework designed for multilingual large language models. It implements advanced techniques for editing factual knowledge in transformer-based models while preserving model performance across multiple languages.
 
-## 🚀 Features
-
-- **Multilingual Support**: Supports editing in multiple languages including English, French, Spanish, German, Dutch, and Chinese
-- **Advanced Model Editing**: Implements state-of-the-art model editing techniques with null space projection
-- **Comprehensive Evaluation**: Includes extensive evaluation suite for various NLP tasks (GLUE, XNLI, MLQA, WikiANN, etc.)
-- **Flexible Architecture**: Modular design supporting various transformer models (Llama, etc.)
-- **Robust Hyperparameter Management**: Configurable hyperparameters for different model architectures
-
 ## 📁 Project Structure
 
 ```
@@ -57,7 +49,7 @@ pip install jieba  # for Chinese text processing
 pip install seqeval  # for sequence labeling evaluation
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -67,38 +59,6 @@ pip install seqeval  # for sequence labeling evaluation
 ```bash
 bash run.sh
 ```
-
-3. **Custom execution**:
-```python
-from AlphaEdit import apply_AlphaEdit_to_model, AlphaEditHyperParams
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-# Load model and tokenizer
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
-
-# Define editing requests
-requests = [
-    {
-        "prompt": "The capital of France is",
-        "subject": "France",
-        "target_new": "Berlin"  # Example edit
-    }
-]
-
-# Load hyperparameters
-hparams = AlphaEditHyperParams.from_json("hparams/AlphaEdit/Llama3-8B.json")
-
-# Apply edits
-apply_AlphaEdit_to_model(
-    model=model,
-    tok=tokenizer,
-    requests=requests,
-    hparams=hparams,
-    lang_s='en'
-)
-```
-
 ## 🔧 Configuration
 
 ### Hyperparameters
@@ -123,46 +83,18 @@ Key hyperparameters in `AlphaEditHyperParams`:
   - `nullspace_threshold`: Threshold for null space projection
   - `L2`: L2 regularization factor
 
-### Example Configuration
 
-```json
-{
-  "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "layers": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-  "fact_token": "subject_last",
-  "v_num_grad_steps": 20,
-  "v_lr": 5e-1,
-  "v_loss_layer": 31,
-  "clamp_norm_factor": 4,
-  "kl_factor": 0.0625,
-  "mom2_adjustment": true,
-  "nullspace_threshold": 1e-4,
-  "L2": 1e-3
-}
-```
-
-## 📊 Evaluation
+## Evaluation
 
 The framework includes comprehensive evaluation across multiple tasks:
 
 ### Supported Tasks
-
-1. **GLUE Tasks**:
-   - SST (Sentiment Analysis)
-   - CoLA (Linguistic Acceptability)
-   - RTE (Recognizing Textual Entailment)
-   - MRPC (Paraphrase Detection)
 
 2. **Multilingual Tasks**:
    - XNLI (Cross-lingual Natural Language Inference)
    - MLQA (Multilingual Question Answering)
    - WikiANN (Multilingual Named Entity Recognition)
    - PAWS-X (Cross-lingual Paraphrase Adversaries)
-
-3. **Additional Tasks**:
-   - MMLU (Massive Multitask Language Understanding)
-   - Dialogue Evaluation
-   - Sentiment Analysis (multilingual)
 
 ### Running Evaluations
 
@@ -176,7 +108,7 @@ python3 -m experiments.evaluate \
     --num_edits=100
 ```
 
-## 🌍 Multilingual Support
+## Multilingual Support
 
 AlphaEdit supports editing in multiple languages:
 
@@ -194,67 +126,11 @@ AlphaEdit supports editing in multiple languages:
 - Cross-lingual knowledge preservation
 - Language-specific evaluation metrics
 
-## 🔬 Technical Details
-
-### Core Algorithm
-
-AlphaEdit implements an advanced model editing algorithm that:
-
-1. **Computes Key-Value Pairs**: Identifies relevant activations for editing
-2. **Null Space Projection**: Projects edits to preserve existing knowledge
-3. **Residual Distribution**: Distributes editing residuals across layers
-4. **Covariance Updates**: Dynamically updates covariance matrices
-
-### Key Components
-
-- **`compute_ks()`**: Computes key matrices for editing
-- **`compute_z()`**: Handles target computation and fact lookup
-- **`get_project()`**: Implements null space projection
-- **`apply_AlphaEdit_to_model()`**: Main editing function
-
-## 📈 Performance
-
-AlphaEdit achieves:
-- High editing success rates across languages
-- Minimal impact on model fluency
-- Robust performance on downstream tasks
-- Efficient memory usage with selective layer editing
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📚 Citation
-
-If you use AlphaEdit in your research, please cite:
-
-```bibtex
-@article{alphaedit2024,
-  title={AlphaEdit: Multilingual Model Editing with Null Space Projection},
-  author={[Authors]},
-  journal={[Journal]},
-  year={2024}
-}
 ```
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- Built upon the ROME and MEMIT model editing frameworks
-- Utilizes Hugging Face Transformers library
-- Evaluation suite based on GLUE and multilingual benchmarks
-
-## 📞 Contact
-
-For questions and support, please open an issue on GitHub or contact the maintainers.
-
----
-
-**Note**: This framework is designed for research purposes. Please ensure responsible use when editing language models.
+- Built upon the AlphaEdit and MEMIT model editing frameworks
