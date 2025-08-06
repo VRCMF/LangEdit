@@ -1,0 +1,12 @@
+python3 -m experiments.evaluate \
+--alg_name=AlphaEdit \
+--model_name=meta-llama/Meta-Llama-3-8B-Instruct \
+--hparams_fname=/dodrio/scratch/projects/2024_069/mke/AlphaEdit/hparams/AlphaEdit/Llama3-8B.json \
+--ds_name=mzsre \
+--lang_s_part 'es_fr' \
+--other_lang_s_part 'en_de_nl' \
+--dataset_size_limit=800 \
+--num_edits=100 \
+--downstream_eval_steps=5 \
+--lang_s 'delta' \
+--lang_null_space 'Y'
