@@ -259,7 +259,7 @@ if __name__ == '__main__':
         result_dict = wikiann_eval.evaluate(print_logs='True', lang_s=lang_s)
         str_ += str(result_dict[0]['micro_f1']) + '#' + str(result_dict[0]['macro_f1']) + '\n'
 
-    with open('/dodrio/scratch/projects/2024_069/mke/AlphaEdit/glue_eval/dataset/results/wikiann.txt', 'w', encoding='utf-8') as f:
+    with open(your_path, 'w', encoding='utf-8') as f:
         f.write(str_)
     
     

@@ -1,7 +1,7 @@
 python3 -m experiments.evaluate \
 --alg_name=AlphaEdit \
 --model_name=meta-llama/Meta-Llama-3-8B-Instruct \
---hparams_fname=/dodrio/scratch/projects/2024_069/mke/AlphaEdit/hparams/AlphaEdit/Llama3-8B.json \
+--hparams_fname=your_path \
 --ds_name=mzsre \
 --lang_s_part 'es_fr' \
 --other_lang_s_part 'en_de_nl' \
